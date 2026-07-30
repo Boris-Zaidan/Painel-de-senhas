@@ -18,12 +18,5 @@ class SenhaController extends Controller
 
     }
 
-    public function index(SenhaService $service)
-    {
-        $senhaDoDia = $service->listarSenhaDoDia();
-        return SenhaResource::collection($senhaDoDia)->response()->setStatusCode(200);
-
-    }
-
 }
 
