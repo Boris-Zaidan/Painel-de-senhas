@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\SenhaService;
+namespace App\Services;
 
 use App\Models\Senha;
 use Illuminate\Support\Facades\DB;
