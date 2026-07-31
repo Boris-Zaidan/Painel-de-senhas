@@ -18,6 +18,7 @@ class SenhaResource extends JsonResource
             [
                 'id' => $this->id,
                 'codigo' => $this->codigo,
+                'tipo' => $this->tipo,
                 'status' => $this->status
             ];
     }
