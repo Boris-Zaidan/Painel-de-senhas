@@ -53,4 +53,10 @@ class SenhaService
 
     }
 
+    public function listarSenhaDoDia()
+    {
+        return Senha::whereDate('created_at', today())
+            ->oldest()->get();
+    }
+
 }
