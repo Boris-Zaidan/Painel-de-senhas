@@ -6,9 +6,10 @@ use App\Http\Requests\SenhaStoreRequest;
 use App\Http\Resources\SenhaResource;
 
 
+use App\Models\Senha;
+use App\Services\Senha\ChamarSenhaService;
 use App\Services\Senha\GerarSenhaService;
 use App\Services\Senha\ListarSenhaDoDiaService;
-use App\Services\Senha\SenhaService;
 use Illuminate\Http\Request;
 
 class SenhaController extends Controller
@@ -27,5 +28,11 @@ class SenhaController extends Controller
 
     }
 
+    public function chamar(Senha $senha, ChamarSenhaService $service)
+    {
+        $chamarSenha = $service->executar($senha);
+        return (new SenhaResource($chamarSenha))->response()->setStatusCode(200);
+
+    }
 }
 
