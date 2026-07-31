@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Senha;
 
 use App\Models\Senha;
 use Illuminate\Support\Facades\DB;
 
-class SenhaService
+class GerarSenhaService
 {
     public function gerarSenha(array $dados): Senha
     {
@@ -51,12 +51,6 @@ class SenhaService
         $prefixo = strtoupper(substr($tipo, 0, 3));
         return $prefixo . str_pad($numero, 4, '0', STR_PAD_LEFT);
 
-    }
-
-    public function listarSenhaDoDia()
-    {
-        return Senha::whereDate('created_at', today())
-            ->oldest()->get();
     }
 
 }

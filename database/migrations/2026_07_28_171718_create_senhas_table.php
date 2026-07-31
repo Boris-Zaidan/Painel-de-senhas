@@ -13,11 +13,25 @@ return new class extends Migration {
         Schema::create('senhas', function (Blueprint $table) {
             $table->id();
             $table->string('codigo')->unique();
-            $table->enum('tipo', ['normal', 'expedicao', 'atendimento', 'prioritario'])
-                ->default('normal');
-            $table->string('status')->default('aguardando');
-            //depois irei adicionar os relacionamentos
+            $table->enum('tipo', [
+                'normal',
+                'expedicao',
+                'atendimento',
+                'prioritario',
+            ])->default('normal');
+
+            $table->enum('status', [
+                'aguardando',
+                'chamando',
+                'finalizada',
+            ])->default('aguardando');
+
+            $table->timestamp('chamado_em')->nullable();
+            $table->timestamp('finalizado_em')->nullable();
+
             $table->timestamps();
+            //depois adiciono relacionamento
+
         });
     }
 
