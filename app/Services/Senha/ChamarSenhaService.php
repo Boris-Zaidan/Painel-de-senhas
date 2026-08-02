@@ -2,8 +2,10 @@
 
 namespace App\Services\Senha;
 
+use App\Events\SenhaFoiChamada;
 use App\Exceptions\SenhaNaoPodeSerChamadaException;
 use App\Models\Senha;
+use Illuminate\Support\Facades\Redis;
 
 class ChamarSenhaService
 {
@@ -12,7 +14,7 @@ class ChamarSenhaService
 
         $this->validar($senha);
         $this->alterarStatus($senha);
-        // $this->dispararEvento($senha);
+        $this->dispararEvento($senha);
 
 
         return $senha;
@@ -41,10 +43,19 @@ class ChamarSenhaService
 
     }
 
-    // private function dispararEvento(Senha $senha): void
-    // {
-    //     dd('x');
-    // }
+    private function dispararEvento(Senha $senha): void
+    {
+        // dump('Evento disparado');
+        // event(new SenhaFoiChamada($senha));
+        Redis::publish('senhas', json_encode([
+            'id' => $senha->id,
+            'codigo' => $senha->codigo,
+            'tipo' => $senha->tipo,
+            'status' => $senha->status,
+        ]));
+
+
+    }
 
 
 }
