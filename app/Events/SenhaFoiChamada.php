@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Log\Logger;
 use Illuminate\Queue\SerializesModels;
 
 class SenhaFoiChamada implements ShouldBroadcast
@@ -45,5 +46,6 @@ class SenhaFoiChamada implements ShouldBroadcast
             'chamado_em' => $this->senha->chamado_em
 
         ];
+
     }
 }

@@ -11,3 +11,7 @@ Route::prefix('v1')->group(function () {
     Route::patch('senhas/{senha}/chamar', [SenhaController::class, 'chamar']);
 });
 
+
+Route::get('teste-reverb', function () {
+    return view('welcome');
+});
