@@ -46,13 +46,13 @@ class ChamarSenhaService
     private function dispararEvento(Senha $senha): void
     {
         // dump('Evento disparado');
-        // event(new SenhaFoiChamada($senha));
-        Redis::publish('senhas', json_encode([
-            'id' => $senha->id,
-            'codigo' => $senha->codigo,
-            'tipo' => $senha->tipo,
-            'status' => $senha->status,
-        ]));
+        event(new SenhaFoiChamada($senha));
+        // Redis::publish('senhas', json_encode([
+        //     'id' => $senha->id,
+        //     'codigo' => $senha->codigo,
+        //     'tipo' => $senha->tipo,
+        //     'status' => $senha->status,
+        // ]));
 
 
     }
