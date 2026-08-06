@@ -9,7 +9,7 @@ Sistema de gerenciamento de filas de atendimento desenvolvido com **Laravel**, u
 ## 🎥 Demonstração
 
 <p align="center">
-    <img src="./app/Docs/github-demo.gif" alt="Demonstração do Painel de Senhas" width="900">
+    <img src="./docs/github-demo.gif" alt="Demonstração do Painel de Senhas" width="900">
 </p>
 
 Durante a demonstração é possível visualizar o fluxo completo da aplicação:
