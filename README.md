@@ -1,58 +1,287 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎫 Painel de Senhas
+
+Sistema de gerenciamento de filas de atendimento desenvolvido com **Laravel**, utilizando **Redis**, **Queues** e **Laravel Reverb** para comunicação em tempo real entre clientes e painel de atendimento.
+
+> Projeto desenvolvido com foco em boas práticas de arquitetura, separação de responsabilidades, processamento assíncrono e comunicação em tempo real utilizando o ecossistema Laravel.
+
+---
+
+## 🎥 Demonstração
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <img src="./docs/github-demo.gif" alt="Demonstração do Painel de Senhas" width="900">
 </p>
 
-## About Laravel
+Durante a demonstração é possível visualizar o fluxo completo da aplicação:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Geração de uma nova senha;
+- Persistência no banco de dados;
+- Chamada da senha;
+- Processamento assíncrono utilizando Queue;
+- Disparo do evento;
+- Atualização automática do painel via Laravel Reverb.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# 📖 Sobre o projeto
 
-## Learning Laravel
+O Painel de Senhas simula um sistema de gerenciamento de filas utilizado em clínicas, hospitais, repartições públicas e empresas.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+O principal objetivo do projeto foi estudar como construir uma aplicação desacoplada utilizando os principais recursos do ecossistema Laravel, como:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Services
+- Events
+- Broadcasting
+- Queues
+- Redis
+- Laravel Reverb
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+A arquitetura foi organizada para manter a regra de negócio isolada da camada HTTP, facilitando manutenção, testes e evolução da aplicação.
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+# ✨ Funcionalidades
 
-```bash
-composer require laravel/boost --dev
+- ✅ Gerar senhas
+- ✅ Listar senhas
+- ✅ Chamar senhas
+- ✅ Atualização em tempo real
+- ✅ Processamento assíncrono utilizando Queue
+- ✅ Broadcast de eventos
+- ✅ Arquitetura baseada em Services
+- ✅ Regras de negócio desacopladas dos Controllers
 
-php artisan boost:install
+---
+
+# 🛠️ Tecnologias
+
+## Backend
+
+- Laravel 13
+- PHP 8.4
+- MySQL
+- Redis
+- Laravel Reverb
+- Laravel Echo
+- Queue Worker
+
+## Frontend
+
+- Blade
+- JavaScript
+- Vite
+
+> O frontend será migrado futuramente para Vue 3 e Pinia.
+
+---
+
+# 🏛️ Arquitetura
+
+A aplicação foi organizada seguindo o princípio de responsabilidade única (SRP), onde cada camada possui apenas uma responsabilidade.
+
+```text
+Cliente
+    │
+    ▼
+Controller
+    │
+    ▼
+Service
+    │
+    ▼
+Model
+    │
+    ▼
+Banco de Dados
+    │
+    ▼
+Event
+    │
+    ▼
+Queue
+    │
+    ▼
+Broadcast
+    │
+    ▼
+Laravel Reverb
+    │
+    ▼
+Laravel Echo
+    │
+    ▼
+Atualização automática da interface
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+# 📂 Estrutura do projeto
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```text
+app
+├── Events
+├── Exceptions
+├── Http
+│   └── Controllers
+├── Models
+├── Providers
+├── Services
+│   └── V1
+└── Jobs
 
-## Code of Conduct
+routes
+database
+resources
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+# ⚙️ Fluxo da aplicação
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Quando uma senha é chamada, o seguinte fluxo acontece:
 
-## License
+1. O Controller recebe a requisição.
+2. A regra de negócio é executada pela camada Service.
+3. O status da senha é atualizado.
+4. Um evento é disparado.
+5. O evento é processado pela Queue.
+6. O Laravel Reverb realiza o Broadcast.
+7. O Laravel Echo recebe o evento.
+8. A interface é atualizada automaticamente, sem necessidade de recarregar a página.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+# 🔬 Desenvolvimento
+
+Antes da implementação do frontend definitivo, foi criada uma interface de testes utilizando Blade e JavaScript para validar toda a comunicação em tempo real.
+
+Essa etapa permitiu validar:
+
+- ✔ Broadcast de eventos
+- ✔ Processamento da fila
+- ✔ Comunicação com Laravel Reverb
+- ✔ Recebimento dos eventos pelo Laravel Echo
+
+Essa abordagem reduziu a complexidade durante o desenvolvimento e garantiu que toda a infraestrutura de comunicação estivesse funcionando antes da implementação da interface definitiva.
+
+---
+
+# 🚀 API
+
+| Método | Endpoint | Descrição |
+|---------|----------|-----------|
+| POST | `/api/v1/senhas` | Gera uma nova senha |
+| GET | `/api/v1/senhas` | Lista as senhas |
+| PATCH | `/api/v1/senhas/{senha}/chamar` | Chama uma senha |
+
+---
+
+# 🚀 Executando o projeto
+
+Clone o repositório
+
+```bash
+git clone https://github.com/Boris-Zaidan/Painel-de-senhas.git
+
+cd Painel-de-senhas
+```
+
+Instale as dependências
+
+```bash
+composer install
+
+npm install
+```
+
+Configure o ambiente
+
+```bash
+cp .env.example .env
+
+php artisan key:generate
+
+php artisan migrate
+```
+
+Execute a aplicação
+
+```bash
+php artisan serve
+```
+
+Em outro terminal execute o Worker
+
+```bash
+php artisan queue:listen
+```
+
+Execute o servidor WebSocket
+
+```bash
+php artisan reverb:start
+```
+
+Execute o Vite
+
+```bash
+npm run dev
+```
+
+---
+
+# 💡 Decisões Técnicas
+
+Durante o desenvolvimento foram adotadas algumas decisões para tornar a aplicação mais organizada e escalável.
+
+- Utilização de Services para concentrar toda a regra de negócio.
+- Controllers responsáveis apenas por receber e responder requisições.
+- Uso de Events para desacoplar ações da lógica principal.
+- Processamento assíncrono utilizando Queues.
+- Redis utilizado como driver das filas.
+- Comunicação em tempo real através do Laravel Reverb.
+- Separação clara entre regras de domínio e infraestrutura.
+
+---
+
+# 📌 Roadmap
+
+## Backend
+
+- [x] Geração de senhas
+- [x] Listagem de senhas
+- [x] Chamada de senhas
+- [x] Comunicação em tempo real
+- [ ] Histórico de chamadas
+- [ ] Relatórios
+
+## Segurança
+
+- [ ] Autenticação
+- [ ] Controle de permissões
+- [ ] Níveis de acesso
+
+## Frontend
+
+- [ ] Migração para Vue 3
+- [ ] Pinia
+- [ ] Dashboard em tempo real
+
+## Qualidade
+
+- [ ] Testes Unitários
+- [ ] Testes de Feature
+- [ ] Docker
+- [ ] CI/CD com GitHub Actions
+
+---
+
+# 👨‍💻 Autor
+
+**Boris Zaidan**
+
+
+---
+
+GitHub:
+https://github.com/Boris-Zaidan
