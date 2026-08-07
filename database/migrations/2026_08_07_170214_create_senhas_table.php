@@ -26,11 +26,23 @@ return new class extends Migration {
                 'finalizada',
             ])->default('aguardando');
 
+            $table->foreignId('paciente_id')->nullable()
+                ->constrained();
+
+            $table->foreignId('sala_id')->nullable()
+                ->constrained();
+
+            $table->foreignId('medico_id')->nullable()
+                ->constrained();
+
+            $table->foreignId('guiche_id')->nullable()
+                ->constrained();
+
             $table->timestamp('chamado_em')->nullable();
             $table->timestamp('finalizado_em')->nullable();
 
             $table->timestamps();
-            //depois adiciono relacionamento
+
 
         });
     }

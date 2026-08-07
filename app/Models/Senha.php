@@ -11,4 +11,24 @@ class Senha extends Model
         'tipo',
         'status'
     ];
+
+    public function paciente()
+    {
+        return $this->belongsTo(Paciente::class);
+    }
+
+    public function medico()
+    {
+        return $this->belongsTo(Medico::class);
+    }
+
+    public function sala()
+    {
+        return $this->belongsTo(Sala::class);
+    }
+
+    public function guiche()
+    {
+        return $this->belongsTo(Guiche::class);
+    }
 }
