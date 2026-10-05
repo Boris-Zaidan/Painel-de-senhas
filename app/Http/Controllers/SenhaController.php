@@ -24,14 +24,14 @@ class SenhaController extends Controller
     public function index(ListarSenhaDoDiaService $service)
     {
         $senhaDoDia = $service->listarSenhaDoDia();
-        return SenhaResource::collection($senhaDoDia)->response()->setStatusCode(200);
+        return SenhaResource::collection($senhaDoDia);
 
     }
 
     public function chamar(Senha $senha, ChamarSenhaService $service)
     {
         $chamarSenha = $service->executar($senha);
-        return (new SenhaResource($chamarSenha))->response()->setStatusCode(200);
+        return (new SenhaResource($chamarSenha));
 
     }
 }

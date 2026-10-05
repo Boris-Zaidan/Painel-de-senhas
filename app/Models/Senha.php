@@ -9,7 +9,13 @@ class Senha extends Model
     protected $fillable = [
         'codigo',
         'tipo',
-        'status'
+        'status',
+        'paciente_id',
+        'sala_id',
+        'medico_id',
+        'guiche_id',
+        'chamado_em',
+        'finalizado_em',
     ];
 
     public function paciente()

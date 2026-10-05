@@ -19,7 +19,19 @@ class SenhaResource extends JsonResource
                 'id' => $this->id,
                 'codigo' => $this->codigo,
                 'tipo' => $this->tipo,
-                'status' => $this->status
+                'status' => $this->status,
+
+                'paciente_id' => $this->paciente_id,
+                'sala_id' => $this->sala_id,
+                'medico_id' => $this->medico_id,
+                'guiche_id' => $this->guiche_id,
+
+                'chamado_em' => $this->chamado_em,
+                'finalizado_em' => $this->finalizado_em,
+
+
+
+
             ];
     }
 }
