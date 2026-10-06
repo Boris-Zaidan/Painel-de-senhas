@@ -9,6 +9,7 @@ class Guiche extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id',
         'nome',
 
     ];

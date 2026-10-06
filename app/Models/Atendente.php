@@ -11,11 +11,15 @@ class Atendente extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nome',
-        'email',
-        'guiche_id'
+        'id',
+        'Nome'
 
     ];
+
+    public function senhas()
+    {
+        return $this->hasMany(Senha::class);
+    }
 
     public function atendentes()
     {
