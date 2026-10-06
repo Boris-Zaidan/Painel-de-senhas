@@ -14,6 +14,7 @@ class Senha extends Model
         'sala_id',
         'medico_id',
         'guiche_id',
+        'atendente_id',
         'chamado_em',
         'finalizado_em',
     ];
@@ -36,5 +37,11 @@ class Senha extends Model
     public function guiche()
     {
         return $this->belongsTo(Guiche::class);
+    }
+
+    public function atendente()
+    {
+        return $this->belongsTo(Atendente::class);
+
     }
 }
