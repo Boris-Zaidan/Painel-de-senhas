@@ -14,24 +14,29 @@ class SenhaResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return
-            [
-                'id' => $this->id,
-                'codigo' => $this->codigo,
-                'tipo' => $this->tipo,
-                'status' => $this->status,
 
-                'paciente_id' => $this->paciente_id,
-                'sala_id' => $this->sala_id,
-                'medico_id' => $this->medico_id,
-                'guiche_id' => $this->guiche_id,
+        return [
+            'id' => $this->id,
+            'codigo' => $this->codigo,
+            'tipo' => $this->tipo,
+            'status' => $this->status,
+            'chamado_em' => $this->chamado_em,
 
-                'chamado_em' => $this->chamado_em,
-                'finalizado_em' => $this->finalizado_em,
+            'guiche' => $this->whenLoaded('guiche', function () {
+                return [
+                    'id' => $this->guiche->id,
+                    'nome' => $this->guiche->nome,
+                ];
+            }),
+
+            'atendente' => $this->whenLoaded('atendente', function () {
+                return [
+                    'id' => $this->atendente->id,
+                    'nome' => $this->atendente->nome,
+                ];
+            }),
+        ];
 
 
-
-
-            ];
     }
 }

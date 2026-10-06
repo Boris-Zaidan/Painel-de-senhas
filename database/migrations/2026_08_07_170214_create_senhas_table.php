@@ -38,6 +38,10 @@ return new class extends Migration {
             $table->foreignId('guiche_id')->nullable()
                 ->constrained();
 
+            $table->foreignId('atendente_id')->nullable()
+                ->constrained();
+
+
             $table->timestamp('chamado_em')->nullable();
             $table->timestamp('finalizado_em')->nullable();
 

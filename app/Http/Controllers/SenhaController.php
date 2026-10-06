@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChamarSenhaRequest;
 use App\Http\Requests\SenhaStoreRequest;
 use App\Http\Resources\SenhaResource;
 
 
+use App\Models\Atendente;
+use App\Models\Guiche;
 use App\Models\Senha;
 use App\Services\Senha\ChamarSenhaService;
 use App\Services\Senha\GerarSenhaService;
@@ -28,9 +31,12 @@ class SenhaController extends Controller
 
     }
 
-    public function chamar(Senha $senha, ChamarSenhaService $service)
+    public function chamar(ChamarSenhaRequest $request, Senha $senha, ChamarSenhaService $service)
     {
-        $chamarSenha = $service->executar($senha);
+        $chamarSenha = $service->executar(
+            $senha,
+            $request->validated()
+        );
         return (new SenhaResource($chamarSenha));
 
     }
