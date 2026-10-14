@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             SalaSeeder::class,
             GuicheSeeder::class,
             AtendenteSeeder::class,
+            EspecialidadeSeeder::class,
             MedicoSeeder::class,
             PacienteSeeder::class,
         ]);
