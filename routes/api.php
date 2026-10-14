@@ -1,14 +1,19 @@
 <?php
 
 
+
+use App\Http\Controllers\BuscarPacientePorCpfController;
+use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\SenhaController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
     Route::post('senhas', [SenhaController::class, 'store']);
     Route::get('senhas', [SenhaController::class, 'index']);
     Route::patch('senhas/{senha}/chamar', [SenhaController::class, 'chamar']);
+    Route::post('pacientes', [PacienteController::class, 'store']);
+    Route::get('paciente/cpf/{cpf}', [BuscarPacientePorCpfController::class, 'show']);
+    Route::patch('pacientes/{paciente}', [PacienteController::class, 'update']);
 });
 
 
