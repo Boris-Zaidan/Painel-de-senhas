@@ -14,7 +14,7 @@ class Sala extends Model
     ];
 
 
-    public function senhas()
+    public function senha()
     {
         return $this->hasMany(Senha::class);
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Senha extends Model
 {
@@ -19,27 +20,27 @@ class Senha extends Model
         'finalizado_em',
     ];
 
-    public function paciente()
+    public function paciente(): BelongsTo
     {
         return $this->belongsTo(Paciente::class);
     }
 
-    public function medico()
+    public function medico(): BelongsTo
     {
         return $this->belongsTo(Medico::class);
     }
 
-    public function sala()
+    public function sala(): BelongsTo
     {
         return $this->belongsTo(Sala::class);
     }
 
-    public function guiche()
+    public function guiche(): BelongsTo
     {
         return $this->belongsTo(Guiche::class);
     }
 
-    public function atendente()
+    public function atendente(): BelongsTo
     {
         return $this->belongsTo(Atendente::class);
 

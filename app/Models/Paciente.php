@@ -16,7 +16,7 @@ class Paciente extends Model
         'telefone'
     ];
 
-    public function senhas()
+    public function senha()
     {
         return $this->hasMany(Senha::class);
     }
