@@ -9,12 +9,11 @@ class Guiche extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
         'nome',
 
     ];
 
-    public function senhas()
+    public function senha()
     {
         return $this->hasMany(Senha::class);
     }

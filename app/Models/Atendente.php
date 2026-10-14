@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Atendente extends Model
 {
@@ -11,8 +12,7 @@ class Atendente extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
-        'Nome'
+        'Nome',
 
     ];
 
@@ -24,6 +24,10 @@ class Atendente extends Model
     public function atendentes()
     {
         return $this->hasMany(Atendente::class);
+    }
+    public function atendimentos(): HasMany
+    {
+        return $this->hasMany(Atendimento::class);
     }
 
 }
