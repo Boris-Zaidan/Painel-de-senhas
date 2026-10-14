@@ -17,14 +17,14 @@ return new class extends Migration {
                 'normal',
                 'expedicao',
                 'atendimento',
-                'prioritario',
+                'prioritário',
             ])->default('normal');
 
             $table->enum('status', [
-                'aguardando',
-                'chamando',
-                'finalizada',
-            ])->default('aguardando');
+                'aguardando_guiche',
+                'chamando_guiche',
+                'finalizado',
+            ])->default('aguardando_guiche');
 
             $table->foreignId('paciente_id')->nullable()
                 ->constrained();

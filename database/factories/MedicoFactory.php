@@ -2,8 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Especialidade;
 use App\Models\Medico;
 use Illuminate\Database\Eloquent\Factories\Factory;
+
 
 /**
  * @extends Factory<Medico>
@@ -22,18 +24,10 @@ class MedicoFactory extends Factory
 
             'crm' => fake()->unique()->numerify('CRM-######'),
 
-            'especialidade' => fake()->randomElement([
-                'Cardiologia',
-                'Clínico Geral',
-                'Dermatologia',
-                'Ortopedia',
-                'Pediatria',
-                'Neurologia',
-                'Ginecologia',
-                'Oftalmologia',
-                'Psiquiatria',
-                'Urologia',
-            ]),
+            'especialidade_id' => Especialidade::query()
+                ->inRandomOrder()
+                ->value('id'),
+
         ];
     }
 }
