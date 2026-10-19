@@ -9,8 +9,9 @@ class Atendimento extends Model
 {
     protected $fillable = [
         'senha_id',
-        'medico_id',
+        'paciente_id',
         'atendente_id',
+        'medico_id',
         'especialidade_id',
         'iniciado_em',
         'finalizado_em',
@@ -31,6 +32,12 @@ class Atendimento extends Model
     {
         return $this->belongsTo(Atendente::class);
     }
+
+    public function paciente(): BelongsTo
+    {
+        return $this->belongsTo(Paciente::class);
+    }
+
 
     public function especialidade(): BelongsTo
     {
