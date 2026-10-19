@@ -15,7 +15,7 @@ Route::prefix('v1')->group(function () {
     Route::post('pacientes', [PacienteController::class, 'store']);
     Route::get('paciente/cpf/{cpf}', [BuscarPacientePorCpfController::class, 'show']);
     Route::patch('pacientes/{paciente}', [PacienteController::class, 'update']);
-    Route::post('senhas/{senhas}/triagem', [RegistrarTriagemController::class, 'store']);
+    Route::post('senhas/{senha}/triagem', [RegistrarTriagemController::class, 'store']);
 
 });
 
