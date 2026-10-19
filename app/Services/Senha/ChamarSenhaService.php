@@ -13,7 +13,10 @@ class ChamarSenhaService
 {
     public function executar(Senha $senha, array $data): Senha
     {
-
+        // dd([
+        //     'id' => $senha->id,
+        //     'status' => $senha->status,
+        // ]);
         $this->validar($senha);
         $this->alterarStatus($senha, $data);
         $this->dispararEvento($senha);
@@ -27,7 +30,7 @@ class ChamarSenhaService
 
     private function validar(Senha $senha): void
     {
-        if ($senha->status !== 'aguardando') {
+        if ($senha->status !== 'aguardando_guiche') {
             throw new SenhaNaoPodeSerChamadaException(
                 'Somente senha com status Aguardando podem ser chamada.'
             );
@@ -38,7 +41,7 @@ class ChamarSenhaService
 
     private function alterarStatus(Senha $senha, array $data): void
     {
-        $senha->status = "chamando";
+        $senha->status = "chamando_guiche";
         $senha->guiche_id = $data['guiche_id'];
         $senha->atendente_id = $data['atendente_id'];
         $senha->chamado_em = now();
