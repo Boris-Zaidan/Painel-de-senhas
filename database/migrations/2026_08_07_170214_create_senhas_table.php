@@ -23,6 +23,8 @@ return new class extends Migration {
             $table->enum('status', [
                 'aguardando_guiche',
                 'chamando_guiche',
+                'aguardando_medico',
+                'medico_chamando',
                 'finalizado',
             ])->default('aguardando_guiche');
 

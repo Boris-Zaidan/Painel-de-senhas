@@ -16,22 +16,27 @@ return new class extends Migration {
                 ->constrained()
                 ->cascadeOnDelete();
 
+            $table->foreignId('paciente_id')
+                ->constrained('pacientes');
+
             $table->foreignId('medico_id')
                 ->constrained('medicos')
-                ->cascadeOnDelete();
+                ->restrictOnDelete();
 
             $table->foreignId('atendente_id')
                 ->constrained()
-                ->cascadeOnDelete();
+                ->restrictOnDelete();
 
             $table->foreignId('especialidade_id')
                 ->constrained()
-                ->cascadeOnDelete();
+                ->restrictOnDelete();
 
             $table->timestamp('iniciado_em')->nullable();
             $table->timestamp('finalizado_em')->nullable();
 
             $table->text('observacoes')->nullable();
+            $table->timestamps();
+
 
         });
     }

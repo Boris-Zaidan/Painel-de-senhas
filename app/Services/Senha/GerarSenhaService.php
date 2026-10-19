@@ -13,7 +13,7 @@ class GerarSenhaService
         return DB::transaction(function () use ($dados) {
 
             $dados['codigo'] = $this->gerarCodigo($dados['tipo']);
-            $dados['status'] = 'Aguardando';
+            $dados['status'] = 'Aguardando_guiche';
             return Senha::query()->create($dados);
 
         });
