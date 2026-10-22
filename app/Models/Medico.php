@@ -29,6 +29,7 @@ class Medico extends Model
         return $this->belongsTo(Especialidade::class);
     }
 
+
     public function atendimento(): HasMany
     {
         return $this->hasMany(Atendimento::class);

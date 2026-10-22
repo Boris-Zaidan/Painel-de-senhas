@@ -14,7 +14,7 @@ Route::prefix('v1')->group(function () {
     Route::post('senhas', [SenhaController::class, 'store']);
     Route::get('senhas', [SenhaController::class, 'index']);
     Route::get('atendimentos', [ListarAtendimentosController::class, 'index']);
-    Route::post('senhas/{senha}/chamar', [SenhaController::class, 'chamar']);
+    Route::patch('senhas/{senha}/chamar', [SenhaController::class, 'chamar']);
     Route::post('pacientes', [PacienteController::class, 'store']);
     Route::get('paciente/cpf/{cpf}', [BuscarPacientePorCpfController::class, 'show']);
     Route::patch('pacientes/{paciente}', [PacienteController::class, 'update']);
