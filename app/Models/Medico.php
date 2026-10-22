@@ -15,6 +15,7 @@ class Medico extends Model
         'nome',
         'crm',
         'especialidade_id',
+        'sala_id',
 
     ];
 
@@ -31,6 +32,11 @@ class Medico extends Model
     public function atendimento(): HasMany
     {
         return $this->hasMany(Atendimento::class);
+    }
+
+    public function sala(): BelongsTo
+    {
+        return $this->belongsTo(Sala::class);
     }
 }
 

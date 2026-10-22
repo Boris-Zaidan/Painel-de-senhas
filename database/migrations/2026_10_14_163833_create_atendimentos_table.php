@@ -33,6 +33,7 @@ return new class extends Migration {
 
             $table->timestamp('iniciado_em')->nullable();
             $table->timestamp('finalizado_em')->nullable();
+            $table->timestamp('chamado_em')->nullable();
 
             $table->text('observacoes')->nullable();
             $table->timestamps();
