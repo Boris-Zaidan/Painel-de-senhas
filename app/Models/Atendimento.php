@@ -13,6 +13,7 @@ class Atendimento extends Model
         'atendente_id',
         'medico_id',
         'especialidade_id',
+        'chamado_em',
         'iniciado_em',
         'finalizado_em',
         'observacoes',

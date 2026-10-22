@@ -55,7 +55,9 @@ class AtendimentoResource extends JsonResource
             ]),
 
             'observacoes' => $this->observacoes,
+
             'iniciado_em' => $this->iniciado_em,
+            'chamado_em' => $this->chamado_em,
             'finalizado_em' => $this->finalizado_em,
         ];
 

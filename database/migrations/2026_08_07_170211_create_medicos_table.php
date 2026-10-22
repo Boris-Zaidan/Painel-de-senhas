@@ -14,9 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('nome');
             $table->foreignId('especialidade_id')->constrained();
-            $table->foreignId('sala_id')->nullable()
-                ->constrained('salas');
-
+            $table->foreignId('sala_id')->nullable()->constrained('salas');
             $table->string('crm')->unique();
 
             $table->timestamps();
